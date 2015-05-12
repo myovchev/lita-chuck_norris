@@ -20,7 +20,7 @@ module Lita
         obj = MultiJson.load(resp.body)
         raise UnknownAPIError unless obj['type'] == 'success'
 
-        response.reply obj['value']['joke']
+        response.reply obj['value']['joke'].gsub(/&quot;/, '"')
 
       rescue => e
         Lita.logger.error("ChuckNorris#chucknorris raised #{e.class}: #{e.message}")
